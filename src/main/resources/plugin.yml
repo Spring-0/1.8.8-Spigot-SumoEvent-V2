@@ -2,3 +2,6 @@ name: SumoEvent
 version: '${project.version}'
 main: dev.spring93.sumoevent.SumoEvent
 load: STARTUP
+commands:
+  sumo:
+    description: SumoEvent commands.
