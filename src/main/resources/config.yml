@@ -1,0 +1,6 @@
+# Sumo platform worldguard region name.
+region-name: sumoEvent
+
+# Spawn point of the players on the sumo platform.
+loc1: events,0,0,0
+loc2: events,5,0,5
