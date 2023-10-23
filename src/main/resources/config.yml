@@ -28,7 +28,13 @@ loc2: events,34,69,-1,east
 # Spawn coordinates of the sumo spectator platform
 sumo-spawn: events,23,67,-1,east
 
-
+# ---------------------
+# Reward Configuration
+#   Awarded to the final winner
+# ---------------------
+rewards:
+  - "eco give %winner% 10000"
+  - "give %winner% iron_block 10"
 
 # ---------------------
 # Lang configuration

@@ -2,6 +2,7 @@ package dev.spring93.sumoevent.services;
 
 import dev.spring93.sumoevent.SumoEvent;
 import dev.spring93.sumoevent.utils.ConfigManager;
+import dev.spring93.sumoevent.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -120,7 +121,7 @@ public class GameService {
 
     public void endMatch(Player winner, Player loser) {
         MessageManager.broadcastMessage(config.getPlayerDefeatedMessage(winner, loser));
-        // giveRewards(winner);
+        giveRewards(winner);
 
         teleportPlayerToSpectatorPlatform(winner);
         teleportPlayerToSpectatorPlatform(loser);
@@ -155,6 +156,13 @@ public class GameService {
     public static void removePlayerFromQueue(Player player) {
         if(playerQueue.contains(player)) {
             playerQueue.remove(player);
+        }
+    }
+
+    private void giveRewards(Player winner) {
+        for( String reward : config.getRewards()) {
+            reward = reward.replace("%winner%", winner.getName());
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward);
         }
     }
 
