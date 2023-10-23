@@ -115,12 +115,21 @@ public class GameService {
 
     }
 
-    public void endMatch(Player winner) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast " + winner.getDisplayName() + " has won the match.");
+    public void endMatch(Player winner, Player loser) {
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast " + winner.getDisplayName() + " has defeated " +
+                loser.getDisplayName() + " on the sumo platform!");
+
+        teleportPlayerToSpectatorPlatform(winner);
+        teleportPlayerToSpectatorPlatform(loser);
+
+        PlayerService.restoreInventory(winner);
+        PlayerService.restoreInventory(loser);
+
         playerQueue.add(winner);
 
-        if(playerQueue.size() == 1) {
+        if(playerQueue.size() <= 1) {
             stopGame(Bukkit.getConsoleSender());
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast " + winner.getDisplayName() + " has won the sumo event!");
         } else {
             startMatch();
         }
