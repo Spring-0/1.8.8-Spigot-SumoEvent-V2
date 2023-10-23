@@ -1,10 +1,12 @@
 package dev.spring93.sumoevent.services;
 
+import dev.spring93.sumoevent.SumoEvent;
 import dev.spring93.sumoevent.utils.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -76,14 +78,40 @@ public class GameService {
             return;
         }
 
-        player1 = playerQueue.poll();
-        player2 = playerQueue.poll();
+        this.player1 = playerQueue.poll();
+        this.player2 = playerQueue.poll();
+
+        PlayerService.saveAndClearInventory(this.player1);
+        PlayerService.saveAndClearInventory(this.player2);
+
+        PlayerService.clearPotionEffects(this.player1);
+        PlayerService.clearPotionEffects(this.player2);
 
         // Teleport the players to the arena;
         Location[] spawnLocations = ConfigManager.getInstance().getSumoSpawnLocations();
-        player1.teleport(spawnLocations[0]);
-        player2.teleport(spawnLocations[1]);
+        this.player1.teleport(spawnLocations[0]);
+        this.player2.teleport(spawnLocations[1]);
 
+        frozenPlayers.add(player1);
+        frozenPlayers.add(player2);
+
+        // Countdown
+        new BukkitRunnable() {
+            int countdownTime = 3;
+
+            @Override
+            public void run() {
+                if(countdownTime > 0) {
+                    PlayerService.playAnvilSound(player1);
+                    PlayerService.playAnvilSound(player2);
+                    countdownTime--;
+                } else {
+                    frozenPlayers.remove(player1);
+                    frozenPlayers.remove(player2);
+                    cancel();
+                }
+            }
+        }.runTaskTimer(SumoEvent.getInstance(), 0L, 20L);
 
     }
 
