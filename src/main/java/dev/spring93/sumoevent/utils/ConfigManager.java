@@ -42,7 +42,31 @@ public class ConfigManager {
         location2.setYaw(getYawFromDirection(loc2[4]));
 
         return new Location[] {location1, location2};
+    }
 
+    public Location getSumoSpectateWarp() {
+        String[] rawLoc = config.getString("sumo-spawn").split(",");
+        Location loc = new Location(Bukkit.getWorld(rawLoc[0]),  Double.parseDouble(rawLoc[1]), Double.parseDouble(rawLoc[2]),
+                Double.parseDouble(rawLoc[3]));
+
+        loc.setYaw(getYawFromDirection(rawLoc[4]));
+
+        return loc;
+    }
+
+    private float getYawFromDirection(String direction) {
+        switch(direction.toLowerCase()) {
+            case "north":
+                return 180;
+            case "south":
+                return 0;
+            case "east":
+                return -90;
+            case "west":
+                return 90;
+            default:
+                return 0;
+        }
     }
 
 }
