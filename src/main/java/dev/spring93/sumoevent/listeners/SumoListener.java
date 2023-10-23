@@ -26,7 +26,12 @@ public class SumoListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if((player.equals(GameService.player1) || player.equals(GameService.player2)) && gameService.isGameActive()) {
+        if(GameService.frozenPlayers.contains(player)) {
+            event.setTo(event.getFrom());
+            return;
+        }
+
+        if((player.equals(gameService.getPlayer1()) || player.equals(gameService.getPlayer2())) && gameService.isGameActive()) {
             Location from = event.getFrom();
             Location to = event.getTo();
 

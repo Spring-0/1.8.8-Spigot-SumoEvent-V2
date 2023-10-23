@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -13,7 +14,8 @@ public class GameService {
 
     private static Queue<Player> playerQueue;
     private static boolean isGameActive = false;
-    public static Player player1, player2;
+    private static Player player1, player2;
+    public static HashSet<Player> frozenPlayers = new HashSet<>();
 
 
     public GameService() {
