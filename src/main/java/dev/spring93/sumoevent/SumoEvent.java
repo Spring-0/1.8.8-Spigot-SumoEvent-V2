@@ -1,6 +1,7 @@
 package dev.spring93.sumoevent;
 
 import dev.spring93.sumoevent.commands.SumoCommands;
+import dev.spring93.sumoevent.listeners.PlayerQuitListener;
 import dev.spring93.sumoevent.listeners.SumoListener;
 import dev.spring93.sumoevent.services.GameService;
 import dev.spring93.sumoevent.utils.ConfigManager;
@@ -32,6 +33,7 @@ public final class SumoEvent extends JavaPlugin {
     private void registerListeners() {
         sumoListener = new SumoListener();
         this.getServer().getPluginManager().registerEvents(sumoListener, this);
+        this.getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
     }
 
 
