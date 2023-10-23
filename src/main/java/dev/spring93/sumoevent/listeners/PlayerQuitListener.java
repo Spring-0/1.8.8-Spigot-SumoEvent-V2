@@ -12,6 +12,8 @@ public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
+        if(!gameService.isGameActive()) return;
+
         Player player = event.getPlayer();
         gameService.removePlayerFromQueue(player);
 
