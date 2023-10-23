@@ -47,9 +47,9 @@ public class SumoListener implements Listener {
                     && toRegions.size() == 0) {
 
                 Player winner = gameService.getOtherPlayer(player);
-                gameService.endMatch(winner);
-            }
+                gameService.endMatch(winner, player);
 
+            }
         }
     }
 
