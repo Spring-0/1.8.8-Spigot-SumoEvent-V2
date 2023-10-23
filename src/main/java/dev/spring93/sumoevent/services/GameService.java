@@ -108,5 +108,22 @@ public class GameService {
         else return null;
     }
 
+    public void teleportPlayerToSpectatorPlatform(Player player) {
+        player.teleport(ConfigManager.getInstance().getSumoSpectateWarp());
+    }
+
+    public static void removePlayerFromQueue(Player player) {
+        if(playerQueue.contains(player)) {
+            playerQueue.remove(player);
+        }
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
 
 }
