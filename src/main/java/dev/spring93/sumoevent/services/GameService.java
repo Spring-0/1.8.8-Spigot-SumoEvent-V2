@@ -48,6 +48,7 @@ public class GameService {
         if(!playerQueue.contains(player)){
             playerQueue.add(player);
             player.sendMessage("You have joined the sumo event.");
+            teleportPlayerToSpectatorPlatform(player);
         } else {
             player.sendMessage("You are already in the queue.");
         }
