@@ -1,5 +1,7 @@
 package dev.spring93.sumoevent.commands;
 
+import dev.spring93.sumoevent.utils.ConfigManager;
+import dev.spring93.sumoevent.utils.MessageManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -7,6 +9,7 @@ import org.bukkit.command.CommandSender;
 public abstract class BaseCommand implements CommandExecutor {
 
     private String commandName;
+    private final ConfigManager config = ConfigManager.getInstance();
 
     public BaseCommand(String commandName) {
         this.commandName = commandName;
@@ -16,7 +19,7 @@ public abstract class BaseCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase(commandName)) {
             if (args.length < getMinArgs() || args.length > getMaxArgs()) {
-                sender.sendMessage("Invalid number of arguments!");
+                MessageManager.sendMessage(sender, config.getInvalidArgsNumberMessage());
                 return false;
             }
             return execute(sender, args);

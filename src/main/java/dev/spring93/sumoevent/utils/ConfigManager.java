@@ -2,14 +2,19 @@ package dev.spring93.sumoevent.utils;
 
 import dev.spring93.sumoevent.SumoEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.List;
 
 public class ConfigManager {
 
     private static ConfigManager instance;
-    private FileConfiguration config;
+    private static FileConfiguration config;
 
     public ConfigManager() {
         SumoEvent plugin = JavaPlugin.getPlugin(SumoEvent.class);
@@ -67,6 +72,85 @@ public class ConfigManager {
             default:
                 return 0;
         }
+    }
+
+
+    public String getInvalidArgsNumberMessage() {
+        return getConfigString("invalid-argument-amount-message");
+    }
+
+    public String getInvalidArgMessage() {
+        return getConfigString("invalid-argument-message");
+    }
+
+    public String getEventStartedMessage() {
+        return getConfigString("sumo-event-started-message");
+    }
+
+    public String getEventEndedMessage() {
+        return getConfigString("sumo-event-ended-message");
+    }
+
+    public String getEventAlreadyRunningMessage() {
+        return getConfigString("sumo-event-already-running");
+    }
+
+    public String getEventNotRunningMessage() {
+        return getConfigString("sumo-event-not-running");
+    }
+
+    public String getPlayerJoinedEventMessage() {
+        return getConfigString("player-joined-sumo-event");
+    }
+
+    public String getPlayerLeftEventMessage() {
+        return getConfigString("player-left-queue");
+    }
+
+    public String getPlayerAlreadyInQueueMessage() {
+        return getConfigString("player-already-in-queue");
+    }
+
+    public String getPlayerNotInQueueMessage() {
+        return getConfigString("player-not-in-queue");
+    }
+
+    public String getNotEnoughPlayersMessage() {
+        return getConfigString("not-enough-players-message");
+    }
+
+    public String getPlayerDefeatedMessage(Player winner, Player loser) {
+        return getConfigString("player-has-been-defeated-message")
+                .replace("%winner%", winner.getDisplayName())
+                .replace("%loser%", loser.getDisplayName());
+    }
+
+    public String getEventWinnerMessage(Player winner) {
+        return getConfigString("player-won-sumo-event")
+                .replace("%winner%", winner.getDisplayName());
+    }
+
+    public String getNoPermissionMessage() {
+        return getConfigString("no-permission-message");
+    }
+
+    public String getMessagePrefix() {
+        return getConfigString("message-prefix");
+    }
+
+    private String getConfigString(String path) {
+        return ChatColor.translateAlternateColorCodes('&', config.getString(path));
+    }
+
+    public void reloadConfig(CommandSender sender) {
+        SumoEvent plugin = SumoEvent.getInstance();
+        plugin.reloadConfig();
+        this.config = plugin.getConfig();
+        MessageManager.sendMessage(sender, "has been reloaded.");
+    }
+
+    public List<String> getRewards() {
+        return config.getStringList("rewards");
     }
 
 }

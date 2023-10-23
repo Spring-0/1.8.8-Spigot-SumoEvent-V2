@@ -18,27 +18,29 @@ public class GameService {
     private static boolean isGameActive = false;
     private static Player player1, player2;
     public static HashSet<Player> frozenPlayers = new HashSet<>();
+    private ConfigManager config;
 
 
     public GameService() {
+        config = ConfigManager.getInstance();
     }
 
     public void startGame(CommandSender sender) {
         if(!isGameActive) {
             isGameActive = true;
             this.playerQueue = new LinkedList<>();
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast Sumo event has started.");
+            MessageManager.broadcastMessage(config.getEventStartedMessage());
         } else {
-            sender.sendMessage("Game is already running.");
+            MessageManager.sendMessage(sender, config.getEventAlreadyRunningMessage());
         }
     }
 
-    public static void stopGame(CommandSender sender) {
+    public void stopGame(CommandSender sender) {
         if(isGameActive) {
             isGameActive = false;
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast Sumo event has ended.");
+            MessageManager.broadcastMessage(config.getEventEndedMessage());
         } else {
-            sender.sendMessage("There is no active game.");
+            MessageManager.sendMessage(sender, config.getEventNotRunningMessage());
         }
     }
 
@@ -47,10 +49,10 @@ public class GameService {
 
         if(!playerQueue.contains(player)){
             playerQueue.add(player);
-            player.sendMessage("You have joined the sumo event.");
+            MessageManager.sendMessage(player, config.getPlayerJoinedEventMessage());
             teleportPlayerToSpectatorPlatform(player);
         } else {
-            player.sendMessage("You are already in the queue.");
+            MessageManager.sendMessage(player, config.getPlayerAlreadyInQueueMessage());
         }
     }
 
@@ -59,15 +61,15 @@ public class GameService {
 
         if(playerQueue.contains(player)) {
             playerQueue.remove(player);
-            player.sendMessage("You have been removed from the sumo event.");
+            MessageManager.sendMessage(player, config.getPlayerLeftEventMessage());
         } else {
-            player.sendMessage("You are not in the queue.");
+            MessageManager.sendMessage(player, config.getPlayerNotInQueueMessage());
         }
     }
 
     private boolean informIfGameNotActive(Player player){
         if(!isGameActive) {
-            player.sendMessage("There is no active game.");
+            MessageManager.sendMessage(player, config.getEventNotRunningMessage());
             return true;
         }
         return false;
@@ -75,7 +77,7 @@ public class GameService {
 
     public void startMatch() {
         if(playerQueue.size() < 2) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast Not enough players to start a match.");
+            MessageManager.broadcastMessage(config.getNotEnoughPlayersMessage());
             return;
         }
 
@@ -117,8 +119,8 @@ public class GameService {
     }
 
     public void endMatch(Player winner, Player loser) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast " + winner.getDisplayName() + " has defeated " +
-                loser.getDisplayName() + " on the sumo platform!");
+        MessageManager.broadcastMessage(config.getPlayerDefeatedMessage(winner, loser));
+        // giveRewards(winner);
 
         teleportPlayerToSpectatorPlatform(winner);
         teleportPlayerToSpectatorPlatform(loser);
@@ -130,7 +132,7 @@ public class GameService {
 
         if(playerQueue.size() <= 1) {
             stopGame(Bukkit.getConsoleSender());
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "broadcast " + winner.getDisplayName() + " has won the sumo event!");
+            MessageManager.broadcastMessage(config.getEventWinnerMessage(winner));
         } else {
             startMatch();
         }

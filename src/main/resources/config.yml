@@ -1,9 +1,49 @@
 # Sumo platform worldguard region name.
 region-name: sumoevent
 
+# -----------------------------
+# Format for Locations:
+# worldname,x,y,z,direction
+# -----------------------------
+
 # Spawn point of the players on the sumo platform.
 loc1: events,44,69,-1,west
 loc2: events,34,69,-1,east
 
 # Spawn coordinates of the sumo spectator platform
 sumo-spawn: events,23,67,-1,east
+
+
+
+# ---------------------
+# Lang configuration
+# ---------------------
+
+# Message Prefix
+message-prefix: "&d[SumoEvent] &e"
+# Message to be displayed when an invalid number of arguments are passed in.
+invalid-argument-amount-message: "Invalid number of arguments."
+# Message to be displayed when an invalid argument is passed in.
+invalid-argument-message: "Unknown argument."
+# Broadcast Message to be displayed when a sumo event has been started
+sumo-event-started-message: "Sumo event has started."
+# Broadcast Message to be displayed when the sumo event has ended.
+sumo-event-ended-message: "Sumo event has ended."
+# Message to be displayed when an admin attempts starting a sumo event that is already running.
+sumo-event-already-running: "Sumo event is already running."
+# Message to be displayed when an admin attempts to stop a sumo event that is not running.
+sumo-event-not-running: "There is no active sumo event."
+# Message to be displayed to the player when they have joined the sumo event.
+player-joined-sumo-event: "You have joined the sumo event."
+# Message to be displayed to the player when they attempt to join the event when they are already in the queue.
+player-already-in-queue: "You are already in the queue."
+# Message to be displayed to the player when they leave the sumo queue.
+player-left-queue: "You have been removed from the sumo event."
+# Message to be displayed to the player when they attempt to leave a queue they are not in.
+player-not-in-queue: "You are not in the queue."
+# Broadcast message when there are not enough players in the queue to start the event.
+not-enough-players-message: "Not enough players to start a match."
+# Broadcast message when a winner has defeated the loser on the sumo platform
+player-has-been-defeated-message: "%winner% has defeated %loser% on the sumo platform!"
+# Broadcast message to announce the event winner.
+player-won-sumo-event: "%winner% has won the sumo event!"
