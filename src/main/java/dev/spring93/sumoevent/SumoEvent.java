@@ -13,9 +13,11 @@ public final class SumoEvent extends JavaPlugin {
     private ConfigManager configManager;
     private SumoListener sumoListener;
     private GameService gameService;
+    private static SumoEvent instance;
 
     @Override
     public void onEnable() {
+        instance = this;
         configManager = ConfigManager.getInstance();
         registerListeners();
         registerCommands();
@@ -36,5 +38,8 @@ public final class SumoEvent extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
     }
 
+    public static SumoEvent getInstance() {
+        return instance;
+    }
 
 }
