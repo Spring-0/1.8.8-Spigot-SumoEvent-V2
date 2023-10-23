@@ -149,8 +149,16 @@ public class ConfigManager {
         MessageManager.sendMessage(sender, "has been reloaded.");
     }
 
-    public List<String> getRewards() {
-        return config.getStringList("rewards");
+    public List<String> getFinalWinnerRewards() {
+        return config.getStringList("rewards.final-winner-rewards");
+    }
+
+    public List<String> getFinalSecondPlaceRewards() {
+        return config.getStringList("rewards.final-second-place-winner");
+    }
+
+    public List<String> getRoundWinnerRewards() {
+        return config.getStringList("rewards.round-winner");
     }
 
 }

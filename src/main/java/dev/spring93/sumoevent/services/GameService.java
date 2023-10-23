@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class GameService {
@@ -121,7 +122,6 @@ public class GameService {
 
     public void endMatch(Player winner, Player loser) {
         MessageManager.broadcastMessage(config.getPlayerDefeatedMessage(winner, loser));
-        giveRewards(winner);
 
         teleportPlayerToSpectatorPlatform(winner);
         teleportPlayerToSpectatorPlatform(loser);
@@ -129,11 +129,15 @@ public class GameService {
         PlayerService.restoreInventory(winner);
         PlayerService.restoreInventory(loser);
 
+        giveRewards(winner, config.getRoundWinnerRewards());
+
         playerQueue.add(winner);
 
         if(playerQueue.size() <= 1) {
             stopGame(Bukkit.getConsoleSender());
             MessageManager.broadcastMessage(config.getEventWinnerMessage(winner));
+            giveRewards(winner, config.getFinalWinnerRewards());
+            giveRewards(loser, config.getFinalSecondPlaceRewards());
         } else {
             startMatch();
         }
@@ -159,8 +163,8 @@ public class GameService {
         }
     }
 
-    private void giveRewards(Player winner) {
-        for( String reward : config.getRewards()) {
+    private void giveRewards(Player winner, List<String> rewards) {
+        for( String reward : rewards) {
             reward = reward.replace("%winner%", winner.getName());
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward);
         }

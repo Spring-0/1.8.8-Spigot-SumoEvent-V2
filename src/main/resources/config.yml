@@ -30,11 +30,19 @@ sumo-spawn: events,23,67,-1,east
 
 # ---------------------
 # Reward Configuration
-#   Awarded to the final winner
 # ---------------------
 rewards:
-  - "eco give %winner% 10000"
-  - "give %winner% iron_block 10"
+  # Rewards given to the final winner
+  final-winner-rewards:
+    - "eco give %winner% 1000000"
+    - "give %winner% iron_block 10"
+  # Rewards given to the final second place winner
+  final-second-place-winner:
+    - "eco give %winner% 1000"
+    - "give %winner% iron_block 3"
+  # Rewards given to the winner of each round
+  round-winner:
+    - "give %winner% gold_block 1"
 
 # ---------------------
 # Lang configuration
@@ -68,3 +76,5 @@ not-enough-players-message: "Not enough players to start a match."
 player-has-been-defeated-message: "%winner% has defeated %loser% on the sumo platform!"
 # Broadcast message to announce the event winner.
 player-won-sumo-event: "%winner% has won the sumo event!"
+# Message to be displayed to the player when they do not have permission.
+no-permission-message: "&cYou do not have permission to execute this command."
