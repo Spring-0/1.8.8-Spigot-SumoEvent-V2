@@ -53,6 +53,11 @@ public class SumoCommands extends BaseCommand {
                     config.reloadConfig(sender);
                 else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
                 break;
+            case "ver":
+                if(sender.hasPermission("sumoevent.command.version"))
+                    sender.sendMessage(MessageManager.getVersionMessage());
+                else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                break;
             default:
                 MessageManager.sendMessage(sender, config.getInvalidArgMessage());
         }

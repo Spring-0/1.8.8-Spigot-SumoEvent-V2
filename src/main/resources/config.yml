@@ -4,11 +4,11 @@
 # ALL PLAYERS HAVE PERMISSION TO USE '/sumo join' & '/sumo leave'
 #
 # sumoevent.command.help > Allows player to use /sumo help
-# sumoevent.command.ver > Allows player to use /sumo ver
-# sumoevent.command.start > Allows player to use /sumo start
-# sumoevent.command.stop > Allows player to use /sumo stop
-# sumoevent.command.reload > Allows player to use /sumo reload
-# sumoevent.command.startmatch > Allows player to use /sumo startmatch
+# sumoevent.command.version > Allows player to use /sumo ver
+# sumoevent.command.start > Allows player to use /sumo start (Admin command)
+# sumoevent.command.stop > Allows player to use /sumo stop (Admin command)
+# sumoevent.command.reload > Allows player to use /sumo reload (Admin command)
+# sumoevent.command.startmatch > Allows player to use /sumo startmatch (Admin command)
 #
 # --------------------------------------------------------------------
 
