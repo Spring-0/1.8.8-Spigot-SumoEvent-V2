@@ -1,6 +1,9 @@
 # Sumo platform worldguard region name.
-region-name: sumoEvent
+region-name: sumoevent
 
 # Spawn point of the players on the sumo platform.
-loc1: events,0,0,0
-loc2: events,5,0,5
+loc1: events,44,69,-1,west
+loc2: events,34,69,-1,east
+
+# Spawn coordinates of the sumo spectator platform
+sumo-spawn: events,23,67,-1,east
