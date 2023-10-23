@@ -38,6 +38,9 @@ public class ConfigManager {
         Location location2 = new Location(Bukkit.getWorld(loc2[0]), Double.parseDouble(loc2[1]), Double.parseDouble(loc2[2]),
                 Double.parseDouble(loc2[3]));
 
+        location1.setYaw(getYawFromDirection(loc1[4]));
+        location2.setYaw(getYawFromDirection(loc2[4]));
+
         return new Location[] {location1, location2};
 
     }
