@@ -85,6 +85,7 @@ public class GameService {
     public void startMatch() {
         if(playerQueue.size() < 2) {
             MessageManager.broadcastMessage(config.getNotEnoughPlayersMessage());
+            stopGame(Bukkit.getConsoleSender());
             return;
         }
 
