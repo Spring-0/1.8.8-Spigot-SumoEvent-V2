@@ -26,7 +26,9 @@ public class SumoEventFlareUseListener implements Listener {
         ItemStack sumoFlare = new SumoEventFlare().getSumoFlare();
 
         if(item != null && item.isSimilar(sumoFlare) && event.getAction().name().contains("RIGHT")) {
-            player.getInventory().remove(item);
+            ItemStack singleFlare = sumoFlare.clone();
+            singleFlare.setAmount(1);
+            player.getInventory().removeItem(singleFlare);
             List<String> commands = config.getSumoFlareCommands();
             for (String command : commands) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName()));
