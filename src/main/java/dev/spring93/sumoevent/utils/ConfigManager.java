@@ -203,4 +203,8 @@ public class ConfigManager {
         return config.getStringList("sumo-summoner.commands");
     }
 
+    public boolean getSumoFlareGlow() {
+        return config.getBoolean("sumo-summoner.glow");
+    }
+
 }

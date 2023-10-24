@@ -5,7 +5,9 @@ import dev.spring93.sumoevent.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -25,6 +27,7 @@ public class SumoEventFlare {
         String materialName = config.getSumoFlareMaterialName();
         String displayName = config.getSumoFlareDisplayName();
         List<String> lore = config.getSumoFlareLore();
+        boolean glow = config.getSumoFlareGlow();
 
         Material material = Material.getMaterial(materialName);
         ItemStack flare = new ItemStack(material);
@@ -32,6 +35,12 @@ public class SumoEventFlare {
 
         meta.setDisplayName(displayName);
         meta.setLore(lore);
+
+        if(glow) {
+            meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
         flare.setItemMeta(meta);
 
         return flare;

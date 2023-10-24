@@ -55,6 +55,7 @@ rewards:
 sumo-summoner:
   material: RED_MUSHROOM
   display-name: "&c&lSumo Event Starter"
+  glow: true
   lore:
     - '&7Unleash the thrilling'
     - '&7excitement of Sumo wrestling!'
@@ -62,7 +63,8 @@ sumo-summoner:
     - '&eRight-click to start the event.'
   commands:
     - 'give %player% diamond 1'
-    - 'broadcast %player% has started a Sumo event!'
+
+
 # ---------------------
 # Lang configuration
 # ---------------------
