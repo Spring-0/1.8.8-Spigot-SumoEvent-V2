@@ -161,4 +161,24 @@ public class ConfigManager {
         return config.getStringList("rewards.round-winner");
     }
 
+    public int getStartMatchDelay() {
+        return config.getInt("match-start-delay");
+    }
+
+    public boolean getRequireForceStart() {
+        return config.getBoolean("require-force-start");
+    }
+
+    public String getForceStartReminderMessage() {
+        return config.getString("force-start-required-reminder-message");
+    }
+
+    public int getMessageBroadcastInterval() {
+        return config.getInt("sumo-event-countdown-interval");
+    }
+
+    public String getEventBroadcastMessage() {
+        return config.getString("event-status-broadcast-message");
+    }
+
 }

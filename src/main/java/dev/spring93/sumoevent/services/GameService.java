@@ -32,6 +32,11 @@ public class GameService {
             isGameActive = true;
             this.playerQueue = new LinkedList<>();
             MessageManager.broadcastMessage(config.getEventStartedMessage());
+
+            if(!config.getRequireForceStart())
+                new SchedulerService(this).scheduleStartMatch();
+            else MessageManager.sendMessage(sender, config.getForceStartReminderMessage());
+
         } else {
             MessageManager.sendMessage(sender, config.getEventAlreadyRunningMessage());
         }
@@ -176,6 +181,10 @@ public class GameService {
 
     public Player getPlayer2() {
         return player2;
+    }
+
+    public int getPlayerCount() {
+        return playerQueue.size();
     }
 
 }
