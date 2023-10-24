@@ -2,10 +2,10 @@ package dev.spring93.sumoevent;
 
 import dev.spring93.sumoevent.commands.SumoCommands;
 import dev.spring93.sumoevent.listeners.PlayerQuitListener;
+import dev.spring93.sumoevent.listeners.SumoEventFlareUseListener;
 import dev.spring93.sumoevent.listeners.SumoListener;
 import dev.spring93.sumoevent.services.GameService;
 import dev.spring93.sumoevent.utils.ConfigManager;
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SumoEvent extends JavaPlugin {
@@ -33,9 +33,9 @@ public final class SumoEvent extends JavaPlugin {
     }
 
     private void registerListeners() {
-        sumoListener = new SumoListener();
-        this.getServer().getPluginManager().registerEvents(sumoListener, this);
+        this.getServer().getPluginManager().registerEvents(new SumoListener(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
+        this.getServer().getPluginManager().registerEvents(new SumoEventFlareUseListener(), this);
     }
 
     public static SumoEvent getInstance() {

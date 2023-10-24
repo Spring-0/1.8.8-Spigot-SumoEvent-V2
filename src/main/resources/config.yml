@@ -9,6 +9,7 @@
 # sumoevent.command.stop > Allows player to use /sumo stop (Admin command)
 # sumoevent.command.reload > Allows player to use /sumo reload (Admin command)
 # sumoevent.command.startmatch > Allows player to use /sumo startmatch (Admin command)
+# sumoevent.command.giveflare > Allows player to give other players a sumo event starter
 #
 # --------------------------------------------------------------------
 
@@ -51,6 +52,17 @@ rewards:
   round-winner:
     - "give %winner% gold_block 1"
 
+sumo-summoner:
+  material: RED_MUSHROOM
+  display-name: "&c&lSumo Event Starter"
+  lore:
+    - '&7Unleash the thrilling'
+    - '&7excitement of Sumo wrestling!'
+    - ''
+    - '&eRight-click to start the event.'
+  commands:
+    - 'give %player% diamond 1'
+    - 'broadcast %player% has started a Sumo event!'
 # ---------------------
 # Lang configuration
 # ---------------------

@@ -1,5 +1,6 @@
 package dev.spring93.sumoevent.commands;
 
+import dev.spring93.sumoevent.items.SumoEventFlare;
 import dev.spring93.sumoevent.services.GameService;
 import dev.spring93.sumoevent.utils.ConfigManager;
 import dev.spring93.sumoevent.utils.MessageManager;
@@ -58,6 +59,11 @@ public class SumoCommands extends BaseCommand {
                     sender.sendMessage(MessageManager.getVersionMessage());
                 else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
                 break;
+            case "giveflare":
+                if(sender.hasPermission("sumoevent.command.giveflare"))
+                    new SumoEventFlare().giveFlareToPlayer(sender, args[1].toLowerCase().trim());
+                else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                break;
             default:
                 MessageManager.sendMessage(sender, config.getInvalidArgMessage());
         }
@@ -69,6 +75,11 @@ public class SumoCommands extends BaseCommand {
     @Override
     protected int getMinArgs() {
         return 1;
+    }
+
+    @Override
+    protected int getMaxArgs() {
+        return 2;
     }
 
 }

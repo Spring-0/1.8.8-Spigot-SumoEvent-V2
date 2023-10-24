@@ -181,4 +181,26 @@ public class ConfigManager {
         return config.getString("event-status-broadcast-message");
     }
 
+    public String getSumoFlareMaterialName() {
+        return config.getString("sumo-summoner.material");
+    }
+
+    public String getSumoFlareDisplayName() {
+        return getConfigString("sumo-summoner.display-name");
+    }
+
+    public List<String> getSumoFlareLore() {
+        List<String> lore = config.getStringList("sumo-summoner.lore");
+        for (int i = 0; i < lore.size(); i++) {
+            String line = lore.get(i);
+            line = ChatColor.translateAlternateColorCodes('&', line);
+            lore.set(i, line);
+        }
+        return lore;
+    }
+
+    public List<String> getSumoFlareCommands() {
+        return config.getStringList("sumo-summoner.commands");
+    }
+
 }

@@ -27,7 +27,8 @@ public class MessageManager {
                 "/sumo leave > leave a sumo event\n" +
                 "/sumo startmatch > force starts a sumo round\n" +
                 "/sumo reload > reloads the config\n" +
-                "/sumo ver > displays plugin information\n";
+                "/sumo ver > displays plugin information\n" +
+                "/sumo giveflare [player] > gives a player a sumo event starter flare\n";
     }
 
     public static String getVersionMessage() {
