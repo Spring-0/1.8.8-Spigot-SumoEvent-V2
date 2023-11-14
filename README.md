@@ -1,6 +1,6 @@
 # 1.8.8-Spigot-SumoEvent-V2
 
-**SumoEvent** is a robust and customizable Spigot plugin designed to bring the excitement of sumo wrestling into the game.****
+**SumoEvent** is a robust and customizable Spigot plugin designed to bring the excitement of sumo wrestling into the game.
 
 ## Key Features
 +  Match Management: The plugin efficiently manages sumo matches, ensuring a smooth and enjoyable gaming experience. It automatically handles match countdowns, player queues, and inventory management for participants.
