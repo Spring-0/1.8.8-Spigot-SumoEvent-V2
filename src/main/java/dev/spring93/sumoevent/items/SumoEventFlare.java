@@ -23,7 +23,7 @@ public class SumoEventFlare {
         flare = createSumoFlareItem();
     }
 
-    public ItemStack createSumoFlareItem() {
+    private ItemStack createSumoFlareItem() {
         String materialName = config.getSumoFlareMaterialName();
         String displayName = config.getSumoFlareDisplayName();
         List<String> lore = config.getSumoFlareLore();

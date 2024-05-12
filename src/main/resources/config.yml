@@ -8,13 +8,13 @@
 # sumoevent.command.start > Allows player to use /sumo start (Admin command)
 # sumoevent.command.stop > Allows player to use /sumo stop (Admin command)
 # sumoevent.command.reload > Allows player to use /sumo reload (Admin command)
-# sumoevent.command.startmatch > Allows player to use /sumo startmatch (Admin command)
+# sumoevent.command.forcestart > Allows player to use /sumo forcestart (Admin command)
 # sumoevent.command.giveflare > Allows player to give other players a sumo event starter
 #
 # --------------------------------------------------------------------
 
 
-# Sumo platform worldguard region name (must be lowercase).
+# Sumo platform worldguard region name.
 region-name: sumoevent
 
 # -----------------------------
@@ -30,7 +30,7 @@ loc2: events,34,69,-1,east
 sumo-spawn: events,23,67,-1,east
 
 # Time in seconds to wait for players to join before starting the actual game.
-require-force-start: false # if this is true it will require you to force start the match using /sumo startmatch
+require-force-start: false # if this is true it will require you to force start the match using /sumo forcestart
 match-start-delay: 180 # This value should be in seconds (must be a multiple of the countdown interval)
 
 # This is the interval that will broadcast a message to the players
@@ -44,10 +44,12 @@ rewards:
   final-winner-rewards:
     - "eco give %winner% 1000000"
     - "give %winner% iron_block 10"
+
   # Rewards given to the final second place winner
   final-second-place-winner:
     - "eco give %winner% 1000"
     - "give %winner% iron_block 3"
+
   # Rewards given to the winner of each round
   round-winner:
     - "give %winner% gold_block 1"
@@ -61,6 +63,8 @@ sumo-summoner:
     - '&7excitement of Sumo wrestling!'
     - ''
     - '&eRight-click to start the event.'
+
+  # Commands executed on voucher redemption.
   commands:
     - 'give %player% diamond 1'
 
@@ -100,6 +104,6 @@ player-has-been-defeated-message: "%winner% has defeated %loser% on the sumo pla
 # Broadcast message to announce the event winner.
 player-won-sumo-event: "%winner% has won the sumo event!"
 # Message to remind the player that force start is required
-force-start-required-reminder-message: "Force start required using /sumo startmatch (you can update this in the config)"
+force-start-required-reminder-message: "Force start required using /sumo forcestart (you can update this in the config)"
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."

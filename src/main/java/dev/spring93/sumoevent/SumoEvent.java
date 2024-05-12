@@ -9,16 +9,11 @@ import dev.spring93.sumoevent.utils.ConfigManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SumoEvent extends JavaPlugin {
-
-    private ConfigManager configManager;
-    private SumoListener sumoListener;
-    private GameService gameService;
     private static SumoEvent instance;
 
     @Override
     public void onEnable() {
         instance = this;
-        configManager = ConfigManager.getInstance();
         registerListeners();
         registerCommands();
     }

@@ -39,14 +39,9 @@ public class SumoCommands extends BaseCommand {
             case "leave":
                 gameService.removePlayer((Player) sender);
                 break;
-            case "startmatch":
-                if(sender.hasPermission("sumoevent.command.startmatch"))
+            case "forcestart":
+                if(sender.hasPermission("sumoevent.command.forcestart"))
                     gameService.startMatch();
-                else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
-                break;
-            case "help":
-                if(sender.hasPermission("sumoevent.command.help"))
-                    sender.sendMessage(MessageManager.getHelpMenu());
                 else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
                 break;
             case "reload":
@@ -56,7 +51,7 @@ public class SumoCommands extends BaseCommand {
                 break;
             case "ver":
                 if(sender.hasPermission("sumoevent.command.version"))
-                    sender.sendMessage(MessageManager.getVersionMessage());
+                    MessageManager.sendMessage(sender, MessageManager.getVersionMessage());
                 else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
                 break;
             case "giveflare":
@@ -65,7 +60,10 @@ public class SumoCommands extends BaseCommand {
                 else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
                 break;
             default:
-                MessageManager.sendMessage(sender, config.getInvalidArgMessage());
+                if(sender.hasPermission("sumoevent.command.help"))
+                    MessageManager.sendMessage(sender, MessageManager.getHelpMenu());
+                else MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                break;
         }
 
 

@@ -6,7 +6,7 @@
 
     <groupId>dev.spring93</groupId>
     <artifactId>SumoEvent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.01</version>
     <packaging>jar</packaging>
 
     <name>SumoEvent</name>

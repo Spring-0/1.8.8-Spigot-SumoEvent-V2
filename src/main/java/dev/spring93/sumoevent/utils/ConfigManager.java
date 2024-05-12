@@ -30,7 +30,7 @@ public class ConfigManager {
     }
 
     public String getSumoRegionName() {
-        return config.getString("region-name");
+        return config.getString("region-name").toLowerCase();
     }
 
     public Location[] getSumoSpawnLocations(){

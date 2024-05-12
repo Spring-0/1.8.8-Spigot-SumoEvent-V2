@@ -19,7 +19,7 @@ public abstract class BaseCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase(commandName)) {
             if (args.length < getMinArgs() || args.length > getMaxArgs()) {
-                MessageManager.sendMessage(sender, config.getInvalidArgsNumberMessage());
+                MessageManager.sendMessage(sender, MessageManager.getHelpMenu());
                 return false;
             }
             return execute(sender, args);
